@@ -1,6 +1,17 @@
 Jupyter Notebook
 ================
 
+-   [Overview](#overview)
+    -   [Installing Jupyter Notebook](#installing-jupyter-notebook)
+    -   [Launching Jupyter Notebook](#launching-jupyter-notebook)
+    -   [Working in Jupyter](#working-in-jupyter)
+    -   [The home screen](#the-home-screen)
+    -   [The notebook interface](#the-notebook-interface)
+    -   [Scripting in Jupyter Notebook](#scripting-in-jupyter-notebook)
+        -   [Note: the kernel](#note-the-kernel)
+    -   [Exiting Jupyter](#exiting-jupyter)
+-   [What to do now](#what-to-do-now)
+
 ## Overview
 
 Jupyter Notebook is a popular and easy-to-use browser-based interface
@@ -72,7 +83,7 @@ create a new notebook and a few other options, including a new folder.
 If you select one or more items, as I have in this screenshot, you have
 the ability to rename, move, and trash files. The middle bar, where
 there’s a folder icon, displays the [working
-directory]('The_Command_Line_and_Vim.md'). If you click the “New”
+directory](The_Command_Line_and_Vim.md). If you click the “New”
 drop-down menu, you’ll see a few options for items you can create. For
 now, click the Python you have under “Notebook”. If you have the option
 between Python versions, select the most recent version.
@@ -117,8 +128,8 @@ $ conda install numpy
 $ pip install numpy
 ```
 
-Download and open the [example notebook]('Example_Notebook.ipynb') file
-in Jupyter.
+Download and open the [example notebook](Example_Notebook.ipynb) file in
+Jupyter.
 
 The first section covers formatting in Markdown, a language for
 formatting text that is supported by GitHub, Jupyter, RStudio, and
@@ -184,6 +195,5 @@ To exit Jupyter:
 ## What to do now
 
 Keep looking around the Jupyter interface to get familiar with it. [Here
-is a link provided by
-Jupyter](https://hub.gke2.mybinder.org/user/ipython-ipython-in-depth-e7qwvcuj/notebooks/binder/Index.ipynb)
-with many more examples of what a Notebook can do!
+is a link](https://jupyter.org/try) to many more examples of what a
+Notebook can do.
