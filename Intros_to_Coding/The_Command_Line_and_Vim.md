@@ -1,4 +1,4 @@
-Intro 1: The Command Line and Vim Text Editor
+The Command Line and Vim Text Editor
 ================
 
 -   [Overview](#overview)
@@ -22,6 +22,7 @@ Intro 1: The Command Line and Vim Text Editor
     -   [Basics in Writing Code with
         Vim](#basics-in-writing-code-with-vim)
         -   [Note: File Extensions](#note-file-extensions)
+-   [Additional Resources](#additional-resources)
 -   [What to Do Now](#what-to-do-now)
 
 ## Overview
@@ -30,13 +31,7 @@ This introduction is for users who may have never used a command line.
 [The Command Line](#the-command-line) section covers the basics of
 navigating the interface and common commands for interacting with your
 computer. [The Vim Text Editor](#vim-text-editor) section introduces a
-simple software for writing and executing code scripts. If you are
-comfortable with using both a command line interface and Vim, feel free
-to move on to the next introductions:
-
--   [Intro 2: High-Performance Computing with Discovery](Intro_2.md)
--   [Intro 3: Anaconda Package Manager](Intro_3.md)
--   [Intro 4: Best Practices in Programming and Analysis](Intro_4.md)
+simple software for writing and executing code scripts.
 
 ## The Command Line
 
@@ -47,25 +42,26 @@ Windows, allows you to interact directly with your computer; you
 “command” your computer to execute certain functions. You can browse,
 create, and delete files and folders, pull particular information out of
 files, run code, and much more, all by typing out simple phrases through
-the command line. And don’t worry - there are plenty of safeguards to
-make sure you don’t accidentally use a command that will irreparably
-harm your computer. *Please note:* much of the following will be
-specific to Mac with an Intel chip. Windows has a few differences, but
-the core concepts are the same. If you have a Windows machine and have
-questions or difficulty, please feel free to [contact
-me](mailto:miller.me@northeastern.edu).
+the command line. There are also plenty of safeguards to make sure you
+don’t accidentally use a command that will irreparably harm your
+computer. **Please note:** much of the following will be specific to Mac
+with an Intel chip. Windows has a few differences, but the core concepts
+are the same. If you have a Windows machine and have questions or
+difficulty, please [feel free to reach
+out](mailto:miller.me@northeastern.edu).
 
 When you first open your command line, it will immediately give you some
-basic information: ![](CommandLine_OpenerLine.jpg)<!-- -->
+basic information: ![](imgs/CommandLine_OpenerLine.jpg)<!-- -->
 
 -   `(base)` on the far left means that you are in your “base
-    environment”. More information on environments will come
-    [later](Intro_3.md). For now, just consider this a default space
-    with basic capabilities already built in.
+    environment”. You can find [more information on environments
+    here](Anaconda.md). For now, just consider this a default space with
+    basic capabilities already built in.
 -   The next line, where mine says `Melissas-MacBook:`, lists the name
-    of your computer. When you work in a computing cluster [like
-    Discovery](Intro_2.md), this becomes more relevant. For now, this is
-    the personal computer hardware you are using right now.
+    of your computer. When you work in [a computing cluster like
+    Discovery](Discovery_HPC.md), this becomes more relevant. More
+    generally, this is the personal computer hardware you are using
+    right now.
 -   The `~` symbol is a shortcut to indicate that you are in a folder
     specific to you, the user, for which you have certain permissions
     that you don’t have in another user’s folders. Again this will
@@ -85,11 +81,14 @@ basic information: ![](CommandLine_OpenerLine.jpg)<!-- -->
 ### Navigating Paths
 
 **From here:** Windows commands are often different from those on a Mac,
-so please reference the [Common Commands](#common-commands) section for
-the equivalent commands for using a Windows Command Prompt.
+so please reference [the section on common commands](#common-commands)
+for the equivalent commands for using a Windows Command Prompt.
 Additionally, if you are reading this as a Windows user, I encourage you
 to look at the help pages for those commands to understand argument
-construction on a Windows system.
+construction on a Windows system. It is also possible as a Windows user
+to [install a command line that supports
+Unix](Discovery_HPC.md#logging-in-to-discovery-using-windows) (i.e., the
+commands used by Mac that you will see below).
 
 You are likely familiar with the difference between “files” and
 “folders” on a computer system. A file is a single item, like a document
@@ -103,11 +102,11 @@ command line and type the following (without the `$`), then hit enter:
 $ pwd
 ```
 
-Congrats, you’ve used your first command. `pwd` stands for “print
-working directory”, otherwise known as “tell me what folder I’m in right
-now”. If you saw `~` above in your command line, you likely received an
-output similar to this (with `\` instead of `/` and a drive like `D:` or
-`C:` if you’re using Windows):
+Congrats, you’ve used a command. `pwd` stands for “print working
+directory”, otherwise known as “tell me what folder I’m in right now”.
+If you saw `~` above in your command line, you likely received an output
+similar to this (with `\` instead of `/` and a drive like `D:` or `C:`
+if you’re using Windows):
 
 > `/Users/<username>/`
 
@@ -120,25 +119,25 @@ path spells out every single parent folder all the way to the one you
 are currently in. The first `/` (or `\`) represents what’s called the
 *root* directory. From the root you can access any other lower directory
 that you have access permission to. This visual might help:
-![](DirectoryTree.png)<!-- -->
+![](imgs/DirectoryTree.png)<!-- -->
 
 A *relative path*, in contrast to the absolute path, takes a few
-shortcuts. The `~` above, just like you saw in [Opening The Command
-Line](#opening-the-command-line), is an example of a relative path,
+shortcuts. The `~` above, just [like you saw
+above](#opening-the-command-line), is an example of a relative path,
 because it’s shorthand for three directories: the root, the “users”
 directory or some equivalent, *and* your specific user home directory.
-Often times it’s acceptable to write a code using the relative path, but
-to be extra careful that you’re in the right place, it’s better to use
-the absolute path. You can always use `pwd` to see the absolute path to
-where you are. For example, if I am in the `Desktop` directory on my
+It’s often acceptable to write a code using the relative path, but to be
+extra careful that you’re in the right place, it’s sometimes better to
+use the absolute path. You can always use `pwd` to see the absolute path
+to where you are. For example, if I am in the `Desktop` directory on my
 computer (one directory lower than my user directory `melissamiller1`),
 the absolute path would be:
 
-> `/Users/melissamiller1/Desktop/`
+> `/Users/melissamiller1/Desktop`
 
 While the relative path would be:
 
-> `~/Desktop/`
+> `~/Desktop`
 
 You can’t move horizontally in a directory tree. That is, in the above
 tree, you can’t move directly from `Users` to `opt`. In order to change
@@ -161,7 +160,7 @@ $ ls
 Your output should be your different directories and files listed side
 by side, like this:
 
-![](LS_BaseOutput.jpg)<!-- -->
+![](imgs/LS_BaseOutput.jpg)<!-- -->
 
 But what if you want to see more information about each file? What if
 you wanted to see the output in a certain format? You can add
@@ -187,10 +186,10 @@ Now you can hopefully see that the numbers directly left of your file
 names have changed into human readable digits - that is, in terms of the
 sizes you might be familiar with (KB, MB, GB, etc.). So to summarize,
 you have your base commands like `pwd` and `ls`, but these commands can
-be modified with arguments in order to further specify how to execute
-your command. Commands like `ls` are convenient in that all of your
-different flags can be combined behind one `-`, but if you used multiple
-flags like `$ ls -l -h`, you will get the same output.
+often be modified with arguments in order to further specify how to
+execute your command. Commands like `ls` are convenient in that all of
+your different flags can be combined behind one `-`, but if you used
+multiple flags like `$ ls -l -h`, you will get the same output.
 
 But what if you don’t know what flag to use for what you want? Try this
 command on Mac:
@@ -202,18 +201,17 @@ $ man ls
 You should get a full page of text telling you how to use `ls`. This is
 because `man` stands for *manual*. All of your base commands come with a
 manual page built in. Some commands, usually installed packages rather
-than base commands, instead use a `--help` flag to give the same
-information. Hit `q` to escape the `man` page. Play around with the
+than base commands, instead use a `--help` or `-h` flag to give the same
+information. Hit `q` to quit the `man` page. Play around with the
 different flags of `ls`; what happens if you use something like
 `$ ls -lrt` or `$ ls -a`?
 
 #### Note: What `ls -lh` tells you
 
-Run `$ ls -lh` in your command line. You should get your long form list
-of files with human readable sizes. But what information is in this
-list?
+Run `$ ls -lh` in your command line. You should get a long form list of
+files with human readable sizes. But what information is in this list?
 
-![](LSLH_Output.jpg)<!-- -->
+![](imgs/LSLH_Output.jpg)<!-- -->
 
 Let’s break down what these columns mean:
 
@@ -286,7 +284,7 @@ they’re things you actually want to delete!
 
 You might not think of command line commands as a scripting language
 like Python or R, but it *is* actually a language called `bash` or
-“shell”, at least on Linux systems like Mac. So using command line
+“shell”, at least on Unix systems like Mac. So using command line
 commands, like other languages, takes plenty of practice in order to
 become “fluent”. Fun fact: shell script is as close as you can get to
 “speaking” in pure computer language (which is just binary).
@@ -316,7 +314,8 @@ with commands, use:
     files and directories matching that pattern. This makes avoiding
     typos much easier and faster.
 -   `CTRL+C` will kill a running command. I use this when I run
-    something I didn’t mean to or if something is taking too long.
+    something I didn’t mean to or if I see midway through that the
+    output is incorrect.
 -   Use the up and down arrows on your keyboard to scroll through recent
     commands.
 
@@ -325,11 +324,10 @@ with commands, use:
 Vim is a simple *text editing* software that allows you to edit many
 different kinds of files, including script files of most languages. Vim
 comes pre-installed on most Macs, but if you don’t have it on your
-Windows computer visit the [Vim website](https://www.vim.org) to
-download and install Vim. It is straightforward to download and install
-Vim, but [contact me](mailto:miller.me@northeastern.edu) if you want
-help with this, because it’s important that Vim is installed in the
-right place.
+Windows system visit the [Vim website](https://www.vim.org) to download
+and install Vim. It is straightforward to download and install Vim, but
+[contact me](mailto:miller.me@northeastern.edu) if you want help with
+this, because it’s important that Vim is installed in the right place.
 
 See if Vim is installed:
 
@@ -340,12 +338,11 @@ See if Vim is installed:
 You should receive something like `/usr/bin/vim` or similar.
 
 For the beginner programmer, Vim can be more difficult when it comes to
-understanding what is happening when you use programs outside of the
+understanding what is happening when you write programs outside of the
 command line, because there may not be any visual output. For that
-reason, I recommend [Jupyter Notebook](https://jupyter.org) if you’re
-trying to practice your skills but not doing anything that requires a
-lot of computational power. [Ask me](mailto:miller.me@northeastern.edu)
-if you want help getting set up with Jupyter.
+reason, I recommend [Jupyter Notebook](Jupyter_Notebook.md) if you’re
+trying to practice your language skills but not doing anything that
+requires a whole lot of computational power.
 
 So why use Vim? The utility of Vim is that it is easily accessed from
 the command line, just by typing `$ vim <filename>` to create a file or
@@ -353,12 +350,13 @@ open an existing file. From there, it is very simple to edit your file,
 and if it’s a script file, to execute it from your command line.
 Additionally, like I said earlier, Vim allows you to edit tons of
 different file types. A *word processor* on the other hand, like
-Microsoft Word or Apple Pages, encodes files a certain way such that you
-may only open, edit, and save those kinds of files. Vim has nothing
-fancy - no special fonts, no bold or italics, and most importantly, no
-particular file encoding. The only thing you will see in Vim is
-coloration specific to the language you are using, if it’s a script
-file.
+Microsoft Word or Apple Pages, encodes files such that you may only
+open, edit, and save those kinds of files. Vim has nothing fancy - no
+special fonts, no italics, and most importantly, no particular file
+encoding. The only thing you will see in Vim is coloration specific to
+the language you are using and occasional bold text, if it’s a script
+file. This coloration also doesn’t always come built in, so ask me if
+you want help making Vim colorful.
 
 If you want to learn Vim but are bored with command line work, you can
 play [Vim Adventures](https://vim-adventures.com) (definitely still
@@ -386,7 +384,7 @@ you’ll need in Vim.
 You first open Vim in normal mode. When you’re in the other modes, you
 can return to normal by hitting the `escape` key. Normal mode doesn’t
 allow you to do any text insertion, but you can use a few keyboard
-tricks to do some basic editing:
+tricks to do some basic editing.
 
 ###### Moving around your file
 
@@ -404,7 +402,7 @@ down four lines, and `5k` will move up five lines.
 
 -   `w` moves to the beginning of the next word.
 
--   `0` (zero) moves to the beginning of the current line.
+-   `0` moves to the beginning of the current line.
 
 -   `$` moves to the end of the current line.
 
@@ -423,8 +421,9 @@ down four lines, and `5k` will move up five lines.
 
 -   `/<text>` lets you search for text matching `<text>`.
 
--   `%` will search for the entire word the cursor is on. This is useful
-    for making sure things like variables are all spelled correctly.
+-   `%` will search for the entire word the cursor is on and highlight
+    it. This is useful for finding key words and making sure things like
+    variables are all spelled correctly.
 
 There are many more commands you can run in normal mode, but these are
 the most common.
@@ -454,7 +453,7 @@ file. Here are some of them:
     **ALWAYS** save your file before exiting Vim.
 -   `:q` exits Vim. Using `:wq` will save and then exit.
 -   `:q!` exits Vim without saving the file. This will not create a
-    `.swp`, but it **will** remove anything you’ve done since your last
+    `.swp`, but it **will** undo any changes you’ve made since your last
     save.
 -   `:set number` will show the line numbers. This does not add them to
     the file.
@@ -474,7 +473,7 @@ but it is annoying to deal with and could lead to losing the progress
 you made on your file. If a `.swp` file is created, the next time you
 open that file with Vim, you’ll get a message like this:
 
-![](VIM_SWP.jpg)<!-- -->
+![](imgs/VIM_SWP.jpg)<!-- -->
 
 Follow the instructions shown. If you made changes to a file you want to
 recover that didn’t save, hit `r`. If you didn’t make any changes or
@@ -511,7 +510,7 @@ or
 
 Make sure the path to the language is correct, otherwise you’ll receive
 an error. Any code in the file must be in the language you’ve chosen.
-Let’s write and execute a simple `bash` script using Vim (on Mac).
+Let’s write and execute a simple `bash` script using Vim (**on Mac**).
 
 First, check the path to your language:
 
@@ -550,16 +549,8 @@ for `u` (user) you are `+` (adding) `x` (execute) permission to the
 `hello_world.sh` file. Now it’s time to run it!
 
 ``` bash
+# Note the './' indicating that this script is in the working directory. 
 ./hello_world.sh
-```
-
-    ## Hello, world!
-
-To get the same output, you could have also called the `bash` language
-with your script:
-
-``` bash
-bash hello_world.sh
 ```
 
     ## Hello, world!
@@ -570,8 +561,8 @@ with Vim.
 ##### Note: File Extensions
 
 You are probably already familiar with some file extensions, like
-`.docx` for Microsoft Word or `.ppt` for PowerPoint, even `.txt` for
-plain text files. The `bash` file above had the extension `.sh`. This
+`.docx` for Microsoft Word or `.ppt` for PowerPoint, or `.txt` for plain
+text files. The `bash` file above had the extension `.sh`. This
 indicates that it’s a shell script; other languages use their own
 extensions, like `.py` for Python, `.R` for R, or `.pl` for Perl. The
 nice part about something like Vim is that, because you have the shebang
@@ -590,20 +581,28 @@ file extensions:
 | `.fasta`  |       a common biology DNA/RNA sequence file       |
 | `.fastq`  |     a `.fasta` with “quality scores” attached      |
 |  `.gtf`   |             a common genome file type              |
-|  `.html`  |  a local file that will open in a browser window   |
+|  `.html`  |    a local file that opens in a browser window     |
 |   `.md`   | a Markdown file…like the one you’re reading now :) |
+
+## Additional Resources
+
+-   [Codecademy Cheatsheet: Learn the Command
+    Line](https://www.codecademy.com/learn/learn-the-command-line/modules/learn-the-command-line-navigation/cheatsheet)
+-   [Scrapism Intro to the Command
+    Line](https://scrapism.lav.io/intro-to-the-command-line/)
+-   [freeCodeCamp: Command Line Crash Course (35
+    mins)](https://www.youtube.com/watch?v=yz7nYlnXLfE)
+-   [thenewboston Windows Command Line Tutorial 1 (7.5
+    mins)](https://youtu.be/MBBWVgE0ewk), also has a playlist of more
+    tutorials
+-   [CrashCourse: Keyboards & Command Line Interfaces (11
+    mins)](https://youtu.be/4RPtJ9UyHS0)
 
 ## What to Do Now
 
 Practice with navigating your command line and Vim and maybe execute
 some simple shell scripts (use `echo` to print out whatever you want)
-until you feel comfortable with it. This introduction alone is one of
-the “steepest” parts of the learning curve of programming, so getting
-the basics down is important! Of course, [contact
-me](mailto:miller.me@northeastern.edu) if you want extra help. Once you
-feel ready, move on to the next few introductions, which I promise
-aren’t quite as massive as this one:
-
--   [Intro 2: High-Performance Computing with Discovery](Intro_2.md)
--   [Intro 3: Anaconda Package Manager](Intro_3.md)
--   [Intro 4: Best Practices in Programming and Analysis](Intro_4.md)
+until you feel comfortable with it. This introduction alone is the
+“steepest” part of the learning curve of programming, so [don’t
+hesistate to reach out to me](mailto:miller.me@northeastern.edu) if you
+want extra help.

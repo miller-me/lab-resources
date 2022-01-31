@@ -1,0 +1,24 @@
+#### To use the run_cellpose.ipynb Notebook on the Workstation:
+
+1. Open Anaconda Navigator
+
+2. Launch CMD.exe Prompt in Anaconda Navigator
+
+3. In the Command Prompt window, run these commands in order (hitting Enter after each one):
+
+	 `cd \`
+	 `D:`
+	 `conda activate cellpose`   
+	 `jupyter notebook`
+
+Jupyter should open in a new Chrome window automatically. You should see a file browser listing folders from the "D:" drive.
+
+	- If this is NOT the case, click "Quit" in the top right corner, close the window, then follow the above steps again.
+	- Once Jupyter is open, you must leave Jupyter AND Command Prompt windows open during the run !!!
+
+In the Jupyter window, navigate to the "Jupyter_Notebooks" folder in "Monaghan Lab" -> "Melissa".
+Open the run_cellpose.ipynb notebook and follow the instructions there. 
+
+Alternatively, you can download the Notebook from GitHub to your user folder.
+
+**If you are changing the segmentation parameters**, please duplicate the notebook and edit the duplicate.
