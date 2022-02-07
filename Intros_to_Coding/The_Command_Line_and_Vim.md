@@ -47,8 +47,8 @@ don’t accidentally use a command that will irreparably harm your
 computer. **Please note:** much of the following will be specific to Mac
 with an Intel chip. Windows has a few differences, but the core concepts
 are the same. If you have a Windows machine and have questions or
-difficulty, please [feel free to reach
-out](mailto:miller.me@northeastern.edu).
+difficulty, please feel free to reach
+out.
 
 When you first open your command line, it will immediately give you some
 basic information: ![](imgs/CommandLine_OpenerLine.jpg)<!-- -->
@@ -603,6 +603,6 @@ file extensions:
 Practice with navigating your command line and Vim and maybe execute
 some simple shell scripts (use `echo` to print out whatever you want)
 until you feel comfortable with it. This introduction alone is the
-“steepest” part of the learning curve of programming, so [don’t
-hesistate to reach out to me](mailto:miller.me@northeastern.edu) if you
+“steepest” part of the learning curve of programming, so don’t
+hesistate to reach out to me if you
 want extra help.

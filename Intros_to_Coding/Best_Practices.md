@@ -58,7 +58,7 @@ files in a directory, such that some action is performed on each file
 the same way. Files are most easily chosen to be included in the
 analysis based on their names, so be consistent. Information to put in
 file names includes animal number, treatment, date, and other relevant
-conditions (e.g. `AM1_Control_Spine_01JAN22.csv`). This doesn’t mean
+conditions (e.g.`AM1_Control_Spine_01JAN22.csv`). This doesn’t mean
 that your file names have to be exceedingly lengthy, but trust me you’d
 rather have a longer descriptive name than a shorter unhelpful one. **DO
 NOT** use spaces or other special characters like quotes in your file
