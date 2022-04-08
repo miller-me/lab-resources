@@ -27,7 +27,7 @@ in your desired environment using:
 ``` bash
 # You can add the -n <environment> flag to install to a particular environment
 # that you aren't currently in. Default will install to current environment.
-$ conda install -c conda-forge jupyter_core
+$ conda install -c conda-forge notebook
 ```
 
 If you have the Anaconda desktop application installed, you can skip the
