@@ -4,24 +4,24 @@ Anaconda Package Manager
 -   [Overview](#overview)
 -   [Starting with Anaconda on
     Discovery](#starting-with-anaconda-on-discovery)
--   [Navigating Environments](#navigating-environments)
-    -   [Browse Your Environments](#browse-your-environments)
-    -   [Activate Environments](#activate-environments)
-    -   [Manage Environments](#manage-environments)
--   [Working with Packages](#working-with-packages)
-    -   [The Package Repository](#the-package-repository)
-    -   [Browse Packages](#browse-packages)
-        -   [Note: Channels](#note-channels)
-    -   [Install Packages](#install-packages)
-    -   [Update Packages](#update-packages)
--   [Additional Flags](#additional-flags)
+-   [Navigating environments](#navigating-environments)
+    -   [Browse your environments](#browse-your-environments)
+    -   [Activate environments](#activate-environments)
+    -   [Manage environments](#manage-environments)
+-   [Working with packages](#working-with-packages)
+    -   [The package repository](#the-package-repository)
+    -   [Browse packages](#browse-packages)
+        -   [Note: channels](#note-channels)
+    -   [Install packages](#install-packages)
+    -   [Update packages](#update-packages)
+-   [Additional flags](#additional-flags)
 -   [Additional Resources](#additional-resources)
 -   [What to Do Now](#what-to-do-now)
 
 ## Overview
 
 Discovery has a lot of useful software, but it is by no means
-exhaustive, so you need a way to acquire more software for your work.
+exhaustive, so you need a way to download more software for your work.
 Anaconda is a large, open-source environment and package manager that
 you can access locally and through Discovery. There are many different
 managers out there, including some others available on Discovery, but
@@ -38,28 +38,29 @@ Discovery](https://rc-docs.northeastern.edu/en/latest/software/conda.html)
 that you must load in order to use:
 
 ``` bash
+# Note: this is not the most recent version of Anaconda available on Discovery
 $ module load anaconda3/3.7
 ```
 
-## Navigating Environments
+## Navigating environments
 
 I first mentioned environments in [the introduction to the command
-line](The_Command_Line_and_Vim.md) when discussing the `base`
-environment. An *environment* groups packages together into one
-functional “space”. When you install a package, it usually doesn’t
-install alone; packages often require *other* packages in order to
-execute their commands. Installing a package through Anaconda will also
-automatically install that package’s *dependencies*. Using environments
-avoids package incompatibility. For example, the `salmon` package for
-transcript abundance quantification is currently at version 1.6.0 if you
-were to download it through the Anaconda package repository. However, if
-you downloaded the `Trinity` package for RNA-seq analysis into the same
+line](The_Command_Line.md) when discussing the `base` environment. An
+*environment* groups packages together into one functional “space”. When
+you install a package, it usually doesn’t install alone; packages often
+require *other* packages in order to execute their commands. Installing
+a package through Anaconda will also automatically install that
+package’s *dependencies*. Using environments avoids package
+incompatibility. For example, the `salmon` package for transcript
+abundance quantification is currently at version 1.6.0 if you were to
+download it through the Anaconda package repository. However, if you
+downloaded the `Trinity` package for RNA-seq analysis into the same
 environment, you would encounter a conflict. This is because `Trinity`
 *depends on* `salmon` version 0.13.1. To avoid headaches, and in fact
 for either package to function, you would put `Trinity` and the newest
 `salmon` in separate environments.
 
-#### Browse Your Environments
+#### Browse your environments
 
 To see what environments you have, use:
 
@@ -67,7 +68,7 @@ To see what environments you have, use:
 $ conda env list
 ```
 
-Or
+Or:
 
 ``` bash
 # You can also use -e instead of --envs.
@@ -81,7 +82,7 @@ find this location by going to your home directory, you won’t see
 `.conda` in there if you use `ls`, because it’s hidden. To see all
 directories, including hidden directories, use `ls -a`.
 
-#### Activate Environments
+#### Activate environments
 
 To activate a certain environment, after you’ve loaded `anaconda3/3.7`
 with `module`, use:
@@ -100,7 +101,7 @@ To return to your base environment, you can use:
 $ source activate base
 ```
 
-Or
+Or:
 
 ``` bash
 $ source activate
@@ -119,13 +120,13 @@ previous environment, use:
 $ conda deactivate <environment>
 ```
 
-Or
+Or:
 
 ``` bash
 $ conda deactivate
 ```
 
-#### Manage Environments
+#### Manage environments
 
 To create a new environment, use:
 
@@ -148,7 +149,7 @@ To update all packages in an environment:
 $ conda update -n <environment-name> --all
 ```
 
-## Working with Packages
+## Working with packages
 
 *Packages* are essentially bundles of commands with some kind of common
 purpose that your computer can recognize and use to perform certain
@@ -156,7 +157,7 @@ functions. For example, `pandas` is a data analysis package that makes
 it really easy to work with spreadsheets, while `NumPy` is useful for
 mathematics-heavy data manipulation.
 
-#### The Package Repository
+#### The package repository
 
 Anaconda maintains [a large repository of
 packages](https://anaconda.org/anaconda/repo) available for
@@ -171,14 +172,15 @@ package is available through, then the package name and its version.
 Underneath is a short description of the package. On the far right are
 the platforms that package is supported by. If you click on the package
 name, you will come to a page will additional information, installation
-commands, and often links to the package documentation.
+commands, and links to the package documentation.
 
-#### Browse Packages
+#### Browse packages
 
 To see all of the packages you have installed in any environment, you
 can list the contents of the `pkgs` directory.
 
 ``` bash
+# You can also use the relative path ~/.conda/pkgs
 $ ls /home/<username>/.conda/pkgs
 ```
 
@@ -196,17 +198,17 @@ To see specific packages with a certain name, use:
 $ conda list <package-name>
 ```
 
-##### Note: Channels
+##### Note: channels
 
 *Channels* are locations in the Anaconda package repository from which
 packages are downloaded. There is a default Anaconda channel, but there
 are several others, such as `bioconda` and `conda-forge`, which host
 packages that the default channel may not. Channels are stored as a list
 of URLs that Anaconda searches for the desired package. If you attempt
-to install a package from a channel not within the list stored for your
-user, you will receive an error.
+to install a package from a channel not within the channel list stored
+for your user, you will receive an error.
 
-To display the currently available channels, use:
+To display your currently available channels, use:
 
 ``` bash
 $ conda config --show channels
@@ -218,7 +220,7 @@ In order to add a channel to your list of channels, use:
 $ conda config --append channels <channel-name>
 ```
 
-#### Install Packages
+#### Install packages
 
 To install new packages to an environment, use:
 
@@ -226,11 +228,11 @@ To install new packages to an environment, use:
 # Anaconda will by default install the most recent package version.
 # To install in the current environment, you don't need '-n <environment-name>'.
 # To install from the default channel, you don't need '-c <channel-name>'.
-# To install a specific package version, use <package>=<version> .
+# To install a specific package version, use <package-name>=<version> .
 $ conda install -n <environment-name> -c <channel-name> <package-name>
 ```
 
-#### Update Packages
+#### Update packages
 
 To update packages:
 
@@ -239,7 +241,7 @@ To update packages:
 $ conda update -n <environment-name> <package-name>
 ```
 
-## Additional Flags
+## Additional flags
 
 Along with the commands shown above, there are several other flags you
 can include. These two are common and useful:

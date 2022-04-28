@@ -31,13 +31,14 @@ $ conda install -c conda-forge notebook
 ```
 
 If you have the Anaconda desktop application installed, you can skip the
-command line all together. To install Jupyter in Anaconda Navigator:
+command line all together. To install Jupyter with the Anaconda
+Navigator application:
 
 1.  Launch the Anaconda Navigator application.
 2.  Click the drop-down menu on the home screen to select the desired
     environment.
 3.  You should see blocks for both Jupyter Lab and Jupyter Notebook.
-    Click “Install” under Jupyter Notebook and wait!
+    Click “Install” under Jupyter Notebook and wait.
 
 If you do not have Anaconda but would like to install Jupyter, you can
 use Python’s preferred package manager `pip`. If you [installed Python
@@ -83,10 +84,10 @@ create a new notebook and a few other options, including a new folder.
 If you select one or more items, as I have in this screenshot, you have
 the ability to rename, move, and trash files. The middle bar, where
 there’s a folder icon, displays the [working
-directory](The_Command_Line_and_Vim.md). If you click the “New”
-drop-down menu, you’ll see a few options for items you can create. For
-now, click the Python you have under “Notebook”. If you have the option
-between Python versions, select the most recent version.
+directory](The_Command_Line.md). If you click the “New” drop-down menu,
+you’ll see a few options for items you can create. For now, click the
+Python you have under “Notebook”. If you have the option between Python
+versions, select the most recent version.
 
 #### The notebook interface
 
@@ -95,7 +96,7 @@ between Python versions, select the most recent version.
 Once in your new notebook, you’ll be in a screen that might look like
 some word processing software you’re familiar with, like Microsoft Word,
 except for a few key differences indicating Jupyter’s scripting
-capability. Click “Help”, select “User Interface Tour” in its drop down
+capability. Click “Help”, select “User Interface Tour” in the drop down
 menu, and then make your way through the tour provided.
 
 #### Scripting in Jupyter Notebook
@@ -105,7 +106,7 @@ can be done with `conda` or `pip`:
 
 ``` bash
 ## matplotlib
-# Remember to install it in your desired environment using -n <environment>
+# Remember you can install it in a particular environment using -n <environment>
 $ conda install matplotlib
 
 # with pip:
@@ -129,12 +130,13 @@ $ pip install numpy
 ```
 
 Download and open the [example notebook](Example_Notebook.ipynb) file in
-Jupyter.
+Jupyter. Instructions for how to download files from GitHub are on the
+`lab-resources` home page.
 
-The first section covers formatting in Markdown, a language for
-formatting text that is supported by GitHub, Jupyter, RStudio, and
-others. What you are currently reading was written in Markdown through
-RStudio and rendered as a GitHub document.
+The first section of the notebook covers formatting in Markdown, a
+language for formatting text that is supported by GitHub, Jupyter,
+RStudio, and others. What you are currently reading was written in
+“R-Markdown” through RStudio and rendered as a GitHub document.
 
 The second section includes some basics of scripting in Python with
 Jupyter. This is not intended for practicing language skills, just to
@@ -169,7 +171,7 @@ For a quick example:
 3.  In the second cell, run `print(a)`. You should get `1` in your
     output (or whatever you defined for your variable).
 4.  Now click the “Kernel” tab and select “Restart & Clear Output”.
-5.  Run your `print(a)` cell again, without running the cell above it
+5.  Run your `print(a)` cell again, *without* running the cell above it
     that defines `a`.
 
 You’ll receive a `NameError` telling you `a` is undefined. When you
@@ -178,7 +180,7 @@ to access. When you restart your kernel, you’re wiping the previously
 stored memory, including variables and their values, so there’s nothing
 for the CPU to access when you call the `print` command.
 
-Each notebook file will open with its own kernel, so if you restart the
+Each notebook will open with its own kernel, so if you restart the
 kernel in one notebook, you don’t lose the memory stored for another
 notebook.
 
