@@ -56,19 +56,32 @@ folder on the lab GitHub page before attempting this work.
 #### Load fastqc using `module`
 
 Once your raw read files are finished uploading (see [Getting
-Started](GettingStarted.md)), the next step is quality control. Make
-sure you’re in the folder with the raw reads by using `pwd`.
+Started](GettingStarted.md)), the next step is quality control.
 
-Use `module avail` to see the software available for use. You should see
-`fastqc` in this list. To add `fastqc` to your path:
+First, move to a compute node if you’re not already on one:
 
 ``` bash
-# You might get an error prompting you to also load oracle_java.
-# In that case, first use 'module load oracle_java' before loading fastqc
+$ srun --pty /bin/bash
+```
+
+Make sure you’re in the folder with the raw reads by using `pwd` and
+`ls`. Use `cd` to move to the right directory if you need to.
+
+Use `module avail` to see the software available for use. You should see
+`fastqc` in this list. To add `fastqc` to your path, first load
+`oracle_java`:
+
+``` bash
+$ module load oracle_java
+```
+
+Then load `fastqc`:
+
+``` bash
 $ module load fastqc
 ```
 
-You can confirm `fastqc` was properly loaded with `$ module list`.
+You can confirm `fastqc` was properly loaded with `module list`.
 
 #### FastQC in the Command Line
 
@@ -84,7 +97,7 @@ help page for `fastqc` and see your options.
 -   If you have an alternative file than `.fastq.gz`, `.fastq`, or
     `.fq`, you can specify this with the `-f` or `--format` flag.
 -   `-t` or `--threads` can speed up your job by putting it in parallel.
-    You can use a maximum of 4 threads here.
+    We will use 16 here, which is sufficient.
 -   `-q` or `--quiet` will suppress any output to the command line. You
     will have no indication of the progress of the command if you use
     this.
@@ -95,29 +108,33 @@ Instead, you can specify just a few files.
 
 ``` bash
 # You can include however many file names you feel like in order 
-$ fastqc <file-one> <file-two> -t 4 -o ../results/
+$ fastqc <file-one> <file-two> -t 16 -o ../results/
 
 # IF you wanted to do ALL files (change extension as needed):
-$ fastqc *.fastq.gz -t 4 -o ../results/
+$ fastqc *.fastq.gz -t 16 -o ../results/
 ```
 
 You will see output in your command line as this progresses, and you
-won’t be able to do anything in this window for the time being. For a
-handful of files this won’t take long, so sit tight. Once your `fastqc`
-has finished, you should confirm that you see `.html` files for your
-input files in your `results` directory.
+won’t be able to do anything in this window for the time being, but *do
+not close it*. For reference, running `fastqc` on 4 files about 1.7GB
+each took roughly 18 minutes. Once your `fastqc` has finished, you
+should confirm that you see `.html` files for your input files in your
+`results` directory. There will also be `.zip` files, which contain the
+graphs in the `.html` reports as individual files, as well as the data
+files used to generate the `.html` reports. You can ignore these `.zip`
+files for now.
 
 #### Export and view your fastqc results
 
 You can’t view the `.html` files directly on Discovery, so you have to
-move them to your local computer. On your local computer, open a new
+move them to your local computer. **On your local computer**, open a new
 Terminal or MobaXTerm window (you don’t have to close your Discovery
 window). Use `cd` to navigate to your desired location.
 
-In your Discovery window, navigate to your `results` folder with the
+**In your Discovery window**, navigate to your `results` folder with the
 `.html` report files. Use `pwd` to get the path to the `.html` files.
 
-Then, back in your *local* window:
+Then, back in your **local** window:
 
 ``` bash
 # The * is a wildcard so ALL .html files in the results folder will be transferred
@@ -126,12 +143,15 @@ Then, back in your *local* window:
 $ scp <username>@xfer.discovery.neu.edu:/path/to/fastqc/results/*.html .
 ```
 
-You can confirm that the files have transferred by checking your
-destination folder in your file browser.
+This will be a very quick transfer. You can confirm that the files have
+transferred by checking your destination folder in your local file
+browser.
 
 ### Interpreting your fastqc results & selecting parameters
 
-In your results `.html` file you will see several sections:
+When you click on an `.html` report in your file browser, it will open
+in a browser window such as Safari or Google Chrome. In this report you
+will see several sections:
 
 ![](img/FastQC_summary.jpg)<!-- -->
 
@@ -173,11 +193,12 @@ quality scores and the x-axis indicating position in the sequence. It is
 normal for quality to drop off by some amount at the end of the
 sequence. Make note of where the quality dips into the yellow and red;
 this will inform how much of the end of the sequence you trim off. You
-can also trim the beginning of the sequence if the quality is poor
-here. - **Warning:** will occur if the lower quartile for any base is
-less than 10 or if the median is less than 25. - **Failure:** will occur
-if the lower quartile for any base is less than 5 or if the median is
-less than 20.
+can also trim the beginning of the sequence if the quality is poor here.
+
+-   **Warning:** will occur if the lower quartile for any base is less
+    than 10 or if the median is less than 25.
+-   **Failure:** will occur if the lower quartile for any base is less
+    than 5 or if the median is less than 20.
 
 From [this HBC training module on
 FastQC](https://hbctraining.github.io/Training-modules/planning_successful_rnaseq/lessons/QC_raw_data.html),
@@ -377,15 +398,20 @@ and `Unpaired` reads (your raw reads will also still be present).
 #### Load Trimmomatic using `module`
 
 Trimmomatic is available pre-installed Discovery, which you can confirm
-using `module avail`. As with FastQC, use:
+using `module avail`. As with `fastqc`, first load `oracle_java`:
+
+``` bash
+$ module load oracle_java
+```
+
+Then load `trimmomatic`:
 
 ``` bash
 $ module load trimmomatic
 ```
 
 You can confirm that `trimmomatic` was properly loaded using
-`module list`. Again, you might need to first do
-`module load oracle_java` before loading Trimmomatic.
+`module list`.
 
 #### Batch-trimming using `bash` script
 
@@ -395,7 +421,9 @@ we’ll write a script to do all of them the same way. Below is a script
 for the basic setup, but **please** read carefully and edit the
 parameters to make relevant to your data. There is also a copy of this
 script in the `scripts` directory that you can download and `scp` to
-Discovery.
+Discovery. We will be using `vim` to do this, so if you are not familiar
+with `vim`, please work through the relevant introduction in the Intros
+to Coding folder.
 
 First, create your script using Vim.
 
@@ -488,7 +516,8 @@ file accordingly. Additionally, if you are not using paired-end data,
 you will need to change `PE` accordingly (as well as some major changes
 to the script which I will not cover here).
 
--   `-threads` indicates, as it suggests, the number of threads used.
+-   `-threads` indicates, as it suggests, the number of threads used. 1
+    suffices here.
 -   `-phred33` comes from the Illumina sequencer data quality. You can
     leave this as `33`.
 -   The following six lines, with all your variables, are telling
@@ -534,7 +563,7 @@ add if necessary:
 ##### Executing your script
 
 Now that you’ve written your quality trimming script, it is ready to
-run. First, give execution permission:
+run. First, give it execution permission:
 
 ``` bash
 $ chmod u+x trimmomatic.sh
@@ -558,10 +587,22 @@ job ends in error, check the `slurm` file that’s generated with the run;
 it will contain information about what went wrong so you can adjust
 accordingly.
 
-When the quality trimming finishes, you should see a `slurm` output file
+When the quality trimming finishes, you should see a `slurm` log file
 and two `results` directories: your `paired` and `unpaired` folders (or
 whatever you named them). The paired files will be used for the
-remainder of your analysis.
+remainder of your analysis. The `paired` and `unpaired` files will be
+smaller than the original read files.
+
+The `slurm` file can be moved to your `logs` directory with `mv`. You
+can also rename the `slurm` file to something like `trimmomatic.log` for
+quick reference, but I recommend keeping the job number that was
+associated with this job. You can use `seff <job-number>` to check the
+run stats for this job; these include time and memory used. For 12 read
+files ranging from 1.5 - 1.8 GB each, this took about 3 hours and 580 MB
+of memory. For more information on using Slurm commands like `seff`,
+check out the [introduction to
+Discovery](../Intros_to_Coding/Discovery_HPC.md) or [the Discovery
+documentation](https://rc-docs.northeastern.edu/en/latest/using-discovery/usingslurm.html).
 
 ## FastQC Round 2
 
@@ -587,11 +628,15 @@ module load fastqc
 
 # Change the ".fastq.gz" extension if needed
 # * is a wildcard representing ALL characters, so ALL files will be processed
-fastqc *.fastq.gz -t 4 -o ../results/
+fastqc /path/to/paired/files/*.fastq.gz -t 16 -o ../results/
 ```
 
-You can then `scp` your `.html` files to your local computer and check
-them out.
+When `fastqc` is finished, `scp` your `.html` files to your local
+computer [like you did earlier](#export-and-view-your-fastqc-results)
+and check them out. If you batch-processed all files using the script
+above, you can again move and rename the `slurm` output file. For 12
+paired read files ranging from 620 - 801 MB each, `fastqc` took about 30
+minutes and utilized 3.8 GB of memory.
 
 ## Next steps
 

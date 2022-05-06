@@ -12,4 +12,4 @@ module load fastqc
 # Change the ".fastq.gz" extension if needed
 # Change the path to the results folder as needed
 # * is a wildcard representing ALL characters, so ALL files will be processed
-fastqc *.fastq.gz -t 4 -o ../results/
+fastqc /path/to/paired/*.fastq.gz -t 16 -o ../results/
