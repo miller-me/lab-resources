@@ -1,0 +1,6 @@
+condition_A	condition_A_sample_1	condition_A_sample_1_R1.fastq.gz	condition_A_sample_1_R2.fastq.gz
+condition_A	condition_A_sample_2	condition_A_sample_2_R1.fastq.gz	condition_A_sample_2_R2.fastq.gz
+condition_B	condition_B_sample_1	condition_B_sample_1_R1.fastq.gz	condition_B_sample_1.R2.fastq.gz
+condition_B	condition_B_sample_2	condition_B_sample_2_R1.fastq.gz	condition_B_sample_2_R2.fastq.gz
+condition_C	condition_C_sample_1	condition_C_sample_1_R1.fastq.gz	condition_C_sample_1_R2.fastq.gz
+condition_C	condition_C_sample_2	condition_C_sample_2.R1.fastq.gz	condition_C_sample_2_R2.fastq.gz
