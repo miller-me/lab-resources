@@ -47,7 +47,7 @@ version of `salmon`, but it has all the capability we need, is simple to
 use, and the outputs are nicely organized for downstream work. `Trinity`
 also comes pre-installed on Discovery, but we will set up a `Trinity`
 environment containing `salmon` using
-[Anaconda](../Intros_to_Coding/Anaconda.md).
+[Anaconda](../Intros_to_Coding/Anaconda.md#navigating-environments).
 
 ## Setting up
 
@@ -92,7 +92,8 @@ $ source activate trinity-env
 
 Finally, install `Trinity` into this environment. If you do not have
 `bioconda` in your list of installation channels, [read the intro to
-Anaconda](../Intros_to_Coding/Anaconda.md) to learn how to add it.
+Anaconda](../Intros_to_Coding/Anaconda.md#note-channels) to learn how to
+add it.
 
 ``` bash
 $ conda install -c bioconda trinity=2.8.5
@@ -107,7 +108,7 @@ To run transcript quantification using `salmon` supported by `Trinity`,
 you only need three things:
 
 1.  Your paired quality-trimmed read files [output by
-    `trimmomatic`](Step_1_QualityTrimming.md).
+    `trimmomatic`](Step_1_QualityTrimming.md#quality-trim-with-trimmomatic).
 2.  A reference transcriptome.
 3.  A text file containing the sample names and their corresponding read
     files.
@@ -212,7 +213,7 @@ Then enter the following, editing where necessary:
 ```
 
 A copy of this script is also available [in the `scripts`
-directory](../scripts/quantification.sh). Here are what each of these
+directory](./scripts/quantification.sh). Here are what each of these
 arguments mean:
 
 -   The first line is pointing to the `align_and_estimate_abundance.pl`
@@ -252,7 +253,7 @@ arguments mean:
         if you’re curious.
     -   `--seqBias` enables learning and correction of sequence-specific
         biases that can arise from library preparation.
--   Finally, `---gene_trans_map` is pointing to the gene-transcript ID
+-   Finally, `--gene_trans_map` is pointing to the gene-transcript ID
     map that allows you to do gene level quantification.
 
 For reference, preparing a transcriptome index and running `salmon` on
@@ -320,8 +321,8 @@ Then, create a `getMatrices.sh` file using `vim`:
 $ vim getMatrices.sh
 ```
 
-Enter the following (a copy is also available in the `scripts`
-directory):
+Enter the following (a copy is also available [in the `scripts`
+directory](./scripts/getMatrices.sh)):
 
 ``` bash
 #!/bin/bash
