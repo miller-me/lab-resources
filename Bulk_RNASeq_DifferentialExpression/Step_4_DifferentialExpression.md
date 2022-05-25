@@ -19,9 +19,10 @@ With your gene-level quantification (and transcript level, if
 differential isoform expression is something you’re interested in), it’s
 finally time for the differential expression analysis. The end result is
 a essentially a list of genes ordered by ascending adjusted p-value. You
-can then use this list for gene ontology analysis, selecting targets for
-knockout or over-expression experiments, and FISH to visualize gene
-expression *in situ*. You will be using
+can then use this list for [gene ontology
+analysis](Step_5_GO_analysis.md), selecting targets for knockout or
+over-expression experiments, and FISH to visualize gene expression *in
+situ*. You will be using
 [DESeq2](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4302049/)
 supported by `trinity` to run this analysis.
 
@@ -77,7 +78,7 @@ These packages will take several minutes to install. If you run into
 trouble with any of them, you may need to `module unload R` and instead
 load `R/4.0.2`.
 
-You can exit R with the following:
+You can exit `R` with the following:
 
 ``` r
 q()
@@ -87,10 +88,9 @@ It will ask if you want to save your data. You can press `n`.
 
 ### Supporting files
 
-For the differential expression analysis, you only *need* your
-transcript- or gene-level **raw** counts matrix (not TMM normalized).
-There are two other recommended files you can use to support the
-analysis:
+For the differential expression analysis, you only need your transcript-
+or gene-level **raw** counts matrix (not TMM normalized). There are two
+other recommended files you can use to support the analysis:
 
 1.  Your tab-delimited samples-to-replicates file which you [used with
     QC](Step_3_ReplicateQC.md#create-samples-file).
@@ -130,7 +130,7 @@ bugs.
 
 Additional parameters for your script:
 
-1.  `--min_reps_min_cpm` allows you to set the minimum count of
+1.  `--min_reps_min_cpm` allows you to set the minimum number of
     replicates which much have a minimum CPM (counts per million) value
     for a transcript / gene.
 2.  `--output` lets you name the output directory. Otherwise it will be
@@ -194,8 +194,8 @@ the DE results files, namely that the reported respective average counts
 for `sampleA` and `sampleB` are opposite to what you’d expect given the
 reported `log2FC`. For example, if your conditions are innervated
 vs. denervated, with innervated as `sampleA` and denervated as `sampleB`
-and means of 200 and 400, respectively, you would *expect* a log2FC of 1
-indicating an increase in expression from innervated to denervated.
+and means of 200 and 400, respectively, you would *expect* a `log2FC` of
+1 indicating an increase in expression from innervated to denervated.
 However, what’s reported is a -1.
 
 This is a quirk of DESeq2, in which the alphabetically “last” sample
@@ -217,7 +217,7 @@ contrast=c("conditions","condition_1","condition_2")
 ```
 
 Swap the order of the conditions (i.e. 1 and 2) in this list, making
-`condition_1` your chosen reference (e.g., innervated) and `condition_2`
+`condition_1` your chosen reference (e.g. innervated) and `condition_2`
 the other (denervated).
 
 Next, check lines 29 through 32:
@@ -240,8 +240,8 @@ $ Rscript <filename>.Rscript
 ```
 
 This will take several minutes as the differential expression analysis
-is rerun. You will need to repeat this for all erroneous samples
-(because this is due to alphabetical sorting, it’s possible not all are
+is rerun. You will need to repeat this for all erroneous files (because
+this is due to alphabetical sorting, it’s possible not all are
 incorrect). Check the output directory, and you should see the same
 kinds of results files as earlier. Check that the `.DE_results` files
 are now correct. `scp` all corrected results to your local computer [as
