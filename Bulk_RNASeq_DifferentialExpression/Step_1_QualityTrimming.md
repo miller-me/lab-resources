@@ -48,8 +48,9 @@ step](Step_2_AbundanceQuant.md).
 
 **Please note**: the following assumes a working familiarity with
 navigating the command line and Discovery. If you need practice with
-these concepts, please find the relevant lessons in the Intros to Coding
-folder on the lab GitHub page before attempting this work.
+these concepts, please find the relevant lessons in the [Intros to
+Coding folder on the lab GitHub page](../Intros_to_Coding) before
+attempting this work.
 
 ## FastQC
 
@@ -61,7 +62,7 @@ Started](GettingStarted.md)), the next step is quality control.
 First, move to a compute node if you’re not already on one:
 
 ``` bash
-$ srun --pty /bin/bash
+$ srun --cpus-per-task=16 --pty /bin/bash
 ```
 
 Make sure you’re in the folder with the raw reads by using `pwd` and
@@ -97,7 +98,8 @@ help page for `fastqc` and see your options.
 -   If you have an alternative file than `.fastq.gz`, `.fastq`, or
     `.fq`, you can specify this with the `-f` or `--format` flag.
 -   `-t` or `--threads` can speed up your job by putting it in parallel.
-    We will use 16 here, which is sufficient.
+    We will use 16 here, which is sufficient. Note that this matches the
+    number of `--cpus-per-task` defined earlier.
 -   `-q` or `--quiet` will suppress any output to the command line. You
     will have no indication of the progress of the command if you use
     this.
@@ -116,13 +118,12 @@ $ fastqc *.fastq.gz -t 16 -o ../results/
 
 You will see output in your command line as this progresses, and you
 won’t be able to do anything in this window for the time being, but *do
-not close it*. For reference, running `fastqc` on 4 files about 1.7GB
-each took roughly 18 minutes. Once your `fastqc` has finished, you
-should confirm that you see `.html` files for your input files in your
-`results` directory. There will also be `.zip` files, which contain the
-graphs in the `.html` reports as individual files, as well as the data
-files used to generate the `.html` reports. You can ignore these `.zip`
-files for now.
+not close it*. With 16 threads, this should only take a few minutes.
+Once your `fastqc` has finished, you should confirm that you see `.html`
+files for your input files in your `results` directory. There will also
+be `.zip` files, which contain the graphs in the `.html` reports as
+individual files, as well as the data files used to generate the `.html`
+reports. You can ignore these `.zip` files for now.
 
 #### Export and view your fastqc results
 
@@ -398,7 +399,9 @@ and `Unpaired` reads (your raw reads will also still be present).
 #### Load Trimmomatic using `module`
 
 Trimmomatic is available pre-installed Discovery, which you can confirm
-using `module avail`. As with `fastqc`, first load `oracle_java`:
+using `module avail`. If you are not already on a compute node, move to
+one as you did earlier with `srun --pty /bin/bash`. As with `fastqc`,
+first load `oracle_java`:
 
 ``` bash
 $ module load oracle_java
@@ -434,8 +437,8 @@ $ vim trimmomatic.sh
 
 Once in Vim, hit `i` to enter `Insert` mode. Insert the following
 (including the `#!/bin/bash` and `SBATCH` parameters at the top) and do
-**NOT** leave extra (>1) spaces at the end of any lines. Trust me when I
-say that trailing spaces are one of the most frustrating mistakes to
+**NOT** leave extra (\>1) spaces at the end of any lines. Trust me when
+I say that trailing spaces are one of the most frustrating mistakes to
 make. See below the script for details on the parameters that you can
 change; you can also run `trimmomatic --help` in your command line for
 additional documentation.
@@ -444,6 +447,7 @@ additional documentation.
 #!/bin/bash
 #SBATCH --time=8:00:00
 #SBATCH --partition=short
+#SBATCH --cpus-per-task=16
 #SBATCH --job-name=Trimming
 #SBATCH --nodes=1
 
@@ -486,7 +490,7 @@ function trim_reads {
         # Parameters are described in Step_1_QualityTrimming.md on lab GitHub page
         # DO NOT DELETE any of the "\"
         java -jar /shared/centos7/trimmomatic/0.39/trimmomatic-0.39.jar PE \
-        -threads 1 -phred33 \
+        -threads 16 -phred33 \
         $raw_file_path$sample_name$left_suffix \
         $raw_file_path$sample_name$right_suffix \
         $paired_out$sample_name$left_suffix \
@@ -516,8 +520,9 @@ file accordingly. Additionally, if you are not using paired-end data,
 you will need to change `PE` accordingly (as well as some major changes
 to the script which I will not cover here).
 
--   `-threads` indicates, as it suggests, the number of threads used. 1
-    suffices here.
+-   `-threads` indicates, as it suggests, the number of threads used.
+    Note again that this matches the `--cpus-per-task` flag in your
+    `SBATCH` parameters.
 -   `-phred33` comes from the Illumina sequencer data quality. You can
     leave this as `33`.
 -   The following six lines, with all your variables, are telling
@@ -616,8 +621,8 @@ copy is also in the `scripts` directory):
 
 ``` bash
 #!/bin/bash
-#SBATCH --time=4:00:00
 #SBATCH --partition=short
+#SBATCH --cpus-per-task=16
 #SBATCH --job-name=FASTQC
 #SBATCH --nodes=1
 
@@ -634,9 +639,8 @@ fastqc /path/to/paired/files/*.fastq.gz -t 16 -o ../results/
 When `fastqc` is finished, `scp` your `.html` files to your local
 computer [like you did earlier](#export-and-view-your-fastqc-results)
 and check them out. If you batch-processed all files using the script
-above, you can again move and rename the `slurm` output file. For 12
-paired read files ranging from 620 - 801 MB each, `fastqc` took about 30
-minutes and utilized 3.8 GB of memory.
+above, you can again move and rename the `slurm` output file. As above,
+this shouldn’t take very long.
 
 ## Next steps
 

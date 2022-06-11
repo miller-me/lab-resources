@@ -1,6 +1,6 @@
 #!/bin/bash
-#SBATCH --time=4:00:00
 #SBATCH --partition=short
+#SBATCH --cpus-per-task=16
 #SBATCH --job-name=FASTQC
 #SBATCH --nodes=1
 

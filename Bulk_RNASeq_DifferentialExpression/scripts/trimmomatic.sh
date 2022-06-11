@@ -1,6 +1,7 @@
 #!/bin/bash
 #SBATCH --time=8:00:00
 #SBATCH --partition=short
+#SBATCH --cpus-per-task=16
 #SBATCH --job-name=Trimming
 #SBATCH --nodes=1
 
@@ -43,7 +44,7 @@ function trim_reads {
         # Parameters are described in Step_1_QualityTrimming.md on lab GitHub page
         # DO NOT DELETE any of the "\"
         java -jar /shared/centos7/trimmomatic/0.39/trimmomatic-0.39.jar PE \
-        -threads 1 -phred33 \
+        -threads 16 -phred33 \
         $raw_file_path$sample_name$left_suffix \
         $raw_file_path$sample_name$right_suffix \
         $paired_out$sample_name$left_suffix \

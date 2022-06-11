@@ -308,8 +308,9 @@ a list of the sample directories with their `quant.sf` files.
 #### Generate counts matrices
 
 Now you can create your counts matrices to use downstream. Make sure you
-have the same `trinity` environment activated as you did above. You will
-also need to load `R` into your environment:
+are on a compute node with `anaconda` loaded and have the same
+`trinity-env` environment activated as you did above. You will also need
+to load `R` into your environment:
 
 ``` bash
 $ module load R
