@@ -46,10 +46,12 @@ especially in the blastema**. If you encounter the following “walls of
 color” with or without evident seams like below, this is **not a
 problem** again if the bad stitch is not on the tissue (note the tile on
 the middle-right):
+
 <img src="./img/color_wall.png" width="500" style="display: block; margin: auto;" />
 
 5.  Split the image channels:
-    <img src="./img/split_channels.png" width="500" style="display: block; margin: auto;" />
+
+<img src="./img/split_channels.png" width="500" style="display: block; margin: auto;" />
 
 You should end up with four image windows, each of a different color
 channel. Here are some side-by-side (edited to show up brighter):
@@ -135,11 +137,13 @@ You can now close all of these files.
 -   `10DPA_Proximal_DMSO_Raldh1_Raldh2_Raldh3_Animal5_Blastema_DAPI.tif`
 
 13. Open the **`_Blastema_DAPI` image** from Step 12.
-    <img src="./img/blastema_DAPI.png" width="500" style="display: block; margin: auto;" />
+
+<img src="./img/blastema_DAPI.png" width="500" style="display: block; margin: auto;" />
 
 14. Using the freehand tool, draw along the inner edge of the epithelium
     and around the mesenchyme:
-    <img src="./img/mesenchyme_selection.png" width="500" style="display: block; margin: auto;" />
+
+<img src="./img/mesenchyme_selection.png" width="500" style="display: block; margin: auto;" />
 
 15. Use `Clear Outside`, then **save this image** as a **new** `.tif`
     with the original file name, adding `_Mesenchyme_DAPI.tif` to the
@@ -206,6 +210,7 @@ sides.
 located. Using the example image above,
 `10DPA_Proximal_DMSO_Raldh1_Raldh2_Raldh3_Animal5.czi`, here’s what to
 look for (with the amputation plane I drew earlier, for reference):
+
 <img src="./img/proximal_bone.png" width="40%" /><img src="./img/freehand_selection.png" width="40%" />
 
 In this outline, you can see some nice dense cells on the right side of
@@ -219,6 +224,7 @@ freehand tool to isolate the blastema.
 and ulna. Here is an unmarked example,
 `10DPA_Distal_DMSO_Hoxa9_Hoxa11_Hoxa13_Animal2.czi`, with the radius and
 ulna (and humerus :)) marked next to it:
+
 <img src="./img/distal_amputation.png" width="40%" /><img src="./img/distal_bone.png" width="40%" />
 
 If you are still looking at your DAPI image and wondering where the
@@ -226,9 +232,11 @@ bones are, there is another last-resort trick you can use.
 
 1.  Open your image, and pick any channel that isn’t DAPI.
 2.  Go to `Image` -\> `Adjust` -\> `Brightness / Contrast`:
-    <img src="./img/image_adjust.png" width="500" style="display: block; margin: auto;" />
+
+<img src="./img/image_adjust.png" width="500" style="display: block; margin: auto;" />
 
 A little window like this will pop up next to your image:
+
 <img src="./img/B_C.png" style="display: block; margin: auto;" />
 
 3.  Slowly drag the `Maximum` slider to the left. As you do this, your
@@ -241,6 +249,7 @@ Now you should very clearly be able to see where the ends of the bones
 are. In the proximal
 `10DPA_Proximal_DMSO_Raldh1_Raldh2_Raldh3_Animal5.czi` image from
 earlier, the `Raldh1` channel looks like this:
+
 <img src="./img/proximal_adjust.png" width="500" style="display: block; margin: auto;" />
 
 This trick **is not perfect** - there are some sections where you might
